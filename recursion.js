@@ -32,10 +32,33 @@
 
 // console.log(reverseString('hunter'));
 
-function makeTriangle(n) {
-    if(n === 0){
-        return 0;
-    }
-    return n + makeTriangle(n-1)
+// function makeTriangle(n) {
+//   if (n === 0) {
+//     return 0;
+//   }
+//   return n + makeTriangle(n - 1);
+// }
+// console.log(makeTriangle(5));
+
+// function stringSplitter(date, index = 0) {
+//   if (index === date.length) {
+//     return '';
+//   }
+//   if (date.charAt(index) === '/') {
+//     return '' + stringSplitter(date, index + 1);
+//   }
+//   return date.charAt(index) + stringSplitter(date, index + 1);
+// }
+// console.log(stringSplitter('12/12/2002'));
+
+function fibi(num, n = 0) {
+  if (num === count) {
+    return n;
+  }
+
+  let count = 0;
+  count++;
+  return fibi(num, num[n] + num[n - 1]);
 }
-console.log(makeTriangle(5))
+
+console.log(fibi(7));
