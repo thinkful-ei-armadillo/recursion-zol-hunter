@@ -36,7 +36,7 @@ function makeTriangle(n) {
   if (n === 0) {
     return 0;
   }
-  const node = 0;
+  const node = n;
 
   return makeTriangle(n);
 }
