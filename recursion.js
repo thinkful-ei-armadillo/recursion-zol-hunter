@@ -55,15 +55,43 @@
 //     if(num === 0) return 0;
 //     if(num === 1) return 1;
 
-//     return fibi(num - 1) + fibi(num-2) 
+//     return fibi(num - 1) + fibi(num-2)
 // }
 
 // console.log(fibi(8));
 
-function factorial(num){
-    if(num == 0) return 1
+// function factorial(num) {
+//   if (num === 0) return 1;
 
-    return num * factorial(num - 1)
+//   return num * factorial(num - 1);
+// }
+
+// console.log(factorial(5));
+
+function mazePath(maze, path = [], end = null, i = 0, arrIdx = 0) {
+  if (end === 'e') {
+    return path;
+  }
+  if (maze[arrIdx][i + 1] === ' ') {
+    path.push('R');
+    return mazePath(maze, path, end, i + 1, arrIdx);
+  } else if (maze[arrIdx][i + 1] === '*') {
+    path.push('D');
+    return mazePath(maze, path, end, i, arrIdx + 1);
+  } else if (maze[arrIdx].length - 1 === i) {
+    path.push('D');
+    return mazePath(maze, path, end, i, arrIdx + 1);
+  } else {
+    return mazePath(maze, path, (end = 'e'), i, arrIdx + 1);
+  }
 }
 
-console.log(factorial(5))
+console.log(
+  mazePath([
+    ['S', ' ', ' ', '*', ' ', ' ', ' '],
+    ['*', '*', ' ', '*', ' ', '*', ' '],
+    [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+    [' ', '*', '*', '*', '*', '*', ' '],
+    [' ', ' ', ' ', ' ', ' ', ' ', 'e']
+  ])
+);
