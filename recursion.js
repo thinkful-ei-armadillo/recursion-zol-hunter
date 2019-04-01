@@ -51,14 +51,19 @@
 // }
 // console.log(stringSplitter('12/12/2002'));
 
-function fibi(num, n = 0) {
-  if (num === count) {
-    return n;
-  }
+// function fibi(num) {
+//     if(num === 0) return 0;
+//     if(num === 1) return 1;
 
-  let count = 0;
-  count++;
-  return fibi(num, num[n] + num[n - 1]);
+//     return fibi(num - 1) + fibi(num-2) 
+// }
+
+// console.log(fibi(8));
+
+function factorial(num){
+    if(num == 0) return 1
+
+    return num * factorial(num - 1)
 }
 
-console.log(fibi(7));
+console.log(factorial(5))
