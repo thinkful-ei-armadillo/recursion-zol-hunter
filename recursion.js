@@ -33,10 +33,9 @@
 // console.log(reverseString('hunter'));
 
 function makeTriangle(n) {
-  if (n === 0) {
-    return 0;
-  }
-  const node = n;
-
-  return makeTriangle(n);
+    if(n === 0){
+        return 0;
+    }
+    return n + makeTriangle(n-1)
 }
+console.log(makeTriangle(5))
