@@ -68,30 +68,26 @@
 
 // console.log(factorial(5));
 
-function mazePath(maze, path = [], end = null, i = 0, arrIdx = 0) {
-  if (end === 'e') {
-    return path;
+function mazePath(maze, arrIdx = 0, i = 0) {
+  if (maze[arrIdx][i] === 'e') {
+    return '';
   }
-  if (maze[arrIdx][i + 1] === ' ') {
-    path.push('R');
-    return mazePath(maze, path, end, i + 1, arrIdx);
-  } else if (maze[arrIdx][i + 1] === '*') {
-    path.push('D');
-    return mazePath(maze, path, end, i, arrIdx + 1);
-  } else if (maze[arrIdx].length - 1 === i) {
-    path.push('D');
-    return mazePath(maze, path, end, i, arrIdx + 1);
-  } else {
-    return mazePath(maze, path, (end = 'e'), i, arrIdx + 1);
+
+  if (maze[arrIdx + 1][i] === ' ' || maze[arrIdx + 1][i] === 'e') {
+    return 'D' + mazePath(maze, arrIdx + 1, i);
+  }
+
+  if (maze[arrIdx][i + 1] === ' ' || maze[arrIdx][i + 1] === 'e') {
+    return 'R' + mazePath(maze, arrIdx, i + 1);
   }
 }
 
-console.log(
-  mazePath([
-    ['S', ' ', ' ', '*', ' ', ' ', ' '],
-    ['*', '*', ' ', '*', ' ', '*', ' '],
-    [' ', ' ', ' ', ' ', ' ', ' ', ' '],
-    [' ', '*', '*', '*', '*', '*', ' '],
-    [' ', ' ', ' ', ' ', ' ', ' ', 'e']
-  ])
-);
+let maze = [
+  [' ', ' ', ' ', '*', ' ', ' ', ' '],
+  ['*', '*', ' ', '*', ' ', '*', ' '],
+  [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+  [' ', '*', '*', '*', '*', '*', ' '],
+  [' ', ' ', ' ', ' ', ' ', ' ', 'e']
+];
+
+console.log(mazePath(maze));
