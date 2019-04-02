@@ -68,19 +68,20 @@
 
 // console.log(factorial(5));
 
-function mazePath(maze, arrIdx = 0, i = 0) {
-  if (maze[arrIdx][i] === 'e') {
-    return '';
-  }
+// function mazePath(maze, arrIdx = 0, i = 0) {
+//   if (maze[arrIdx][i] === 'e') {
+//     return '';
+//   }
 
-  if (maze[arrIdx + 1][i] === ' ' || maze[arrIdx + 1][i] === 'e') {
-    return 'D' + mazePath(maze, arrIdx + 1, i);
-  }
+//   if (maze[arrIdx + 1][i] === ' ' || maze[arrIdx + 1][i] === 'e') {
+//     return 'D' + mazePath(maze, arrIdx + 1, i);
+//   }
 
-  if (maze[arrIdx][i + 1] === ' ' || maze[arrIdx][i + 1] === 'e') {
-    return 'R' + mazePath(maze, arrIdx, i + 1);
-  }
-}
+//   if (maze[arrIdx][i + 1] === ' ' || maze[arrIdx][i + 1] === 'e') {
+//     return 'R' + mazePath(maze, arrIdx, i + 1);
+//   }
+// }
+
 
 let maze = [
   [' ', ' ', ' ', '*', ' ', ' ', ' '],
@@ -90,4 +91,93 @@ let maze = [
   [' ', ' ', ' ', ' ', ' ', ' ', 'e']
 ];
 
-console.log(mazePath(maze));
+// console.log(mazePath(maze));
+
+function allAnagrams(str) {
+    str = str.split('');
+    var count = {};
+    
+    var permute = (sofar, rest) => {
+        if(!rest.length) {
+            count[sofar.join('')] = true;
+        } else {
+            for(let i=0; i<rest.length; i++){
+                let copy = rest.slice();
+                let next = sofar.concat(copy.splice(i, 1)); 
+                permute(next, copy)
+            }
+        }
+    }
+    permute([], str)
+    return Object.keys(count)
+}
+
+console.log(allAnagrams('east'))
+
+const facebook = [
+    {
+      Zuckerberg: {
+        Schroepfer: {
+          Bosworth: {
+            Steve: "Steve",
+            Kyle: "Kyle",
+            Andra: "Andra"
+          },
+          Zhao: {
+            Richie: "Richie",
+            Sofia: "Sofia"
+          }
+        },
+        Schrage: {
+          VanDyck: {
+            Sabrina: "Sabrina",
+            Michelle: "Michelle",
+            Josh: "Josh"
+          },
+          Swain: {
+            Blanch: "Blanch",
+            Tom: "Tom",
+            Joe: "Joe"
+          }
+        },
+        Sandberg: {
+          Goler: {
+            Eddie: "Eddie",
+            Julie: "Julie",
+            Annie: "Annie"
+          },
+          Hernandez: {
+            Rowi: "Rowi",
+            Inga: "Inga",
+            Morgan: "Morgan"
+          },
+          Moissinac: {
+            Amy: "Amy",
+            Chuck: "Chuck",
+            Vinni: "Vinni"
+          },
+          Kelley: {
+            Eric: "Eric",
+            Ana: "Ana",
+            Wes: "Wes"
+          }
+        }
+      }
+    }
+  ];
+  
+function organizationChart(org) {
+    //base case
+
+};
+
+  console.log(organizationChart(facebook));
+
+function binary(num){
+    if(num === 0){
+        return ''
+    }
+    return num%2 + binary(Math.floor(num/2));
+}
+
+console.log(binary(5))
