@@ -82,102 +82,118 @@
 //   }
 // }
 
-
-let maze = [
-  [' ', ' ', ' ', '*', ' ', ' ', ' '],
-  ['*', '*', ' ', '*', ' ', '*', ' '],
-  [' ', ' ', ' ', ' ', ' ', ' ', ' '],
-  [' ', '*', '*', '*', '*', '*', ' '],
-  [' ', ' ', ' ', ' ', ' ', ' ', 'e']
-];
+// let maze = [
+//   [' ', ' ', ' ', '*', ' ', ' ', ' '],
+//   ['*', '*', ' ', '*', ' ', '*', ' '],
+//   [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+//   [' ', '*', '*', '*', '*', '*', ' '],
+//   [' ', ' ', ' ', ' ', ' ', ' ', 'e']
+// ];
 
 // console.log(mazePath(maze));
 
-function allAnagrams(str) {
-    str = str.split('');
-    var count = {};
-    
-    var permute = (sofar, rest) => {
-        if(!rest.length) {
-            count[sofar.join('')] = true;
-        } else {
-            for(let i=0; i<rest.length; i++){
-                let copy = rest.slice();
-                let next = sofar.concat(copy.splice(i, 1)); 
-                permute(next, copy)
-            }
-        }
-    }
-    permute([], str)
-    return Object.keys(count)
-}
+// function allAnagrams(str) {
+//   str = str.split('');
+//   var count = {};
 
-console.log(allAnagrams('east'))
+//   var permute = (sofar, rest) => {
+//     if (!rest.length) {
+//       count[sofar.join('')] = true;
+//     } else {
+//       for (let i = 0; i < rest.length; i++) {
+//         let copy = rest.slice();
+//         let next = sofar.concat(copy.splice(i, 1));
+//         permute(next, copy);
+//       }
+//     }
+//   };
+//   permute([], str);
+//   return Object.keys(count);
+// }
 
-const facebook = [
-    {
-      Zuckerberg: {
-        Schroepfer: {
-          Bosworth: {
-            Steve: "Steve",
-            Kyle: "Kyle",
-            Andra: "Andra"
-          },
-          Zhao: {
-            Richie: "Richie",
-            Sofia: "Sofia"
-          }
-        },
-        Schrage: {
-          VanDyck: {
-            Sabrina: "Sabrina",
-            Michelle: "Michelle",
-            Josh: "Josh"
-          },
-          Swain: {
-            Blanch: "Blanch",
-            Tom: "Tom",
-            Joe: "Joe"
-          }
-        },
-        Sandberg: {
-          Goler: {
-            Eddie: "Eddie",
-            Julie: "Julie",
-            Annie: "Annie"
-          },
-          Hernandez: {
-            Rowi: "Rowi",
-            Inga: "Inga",
-            Morgan: "Morgan"
-          },
-          Moissinac: {
-            Amy: "Amy",
-            Chuck: "Chuck",
-            Vinni: "Vinni"
-          },
-          Kelley: {
-            Eric: "Eric",
-            Ana: "Ana",
-            Wes: "Wes"
-          }
-        }
+// console.log(allAnagrams('east'));
+
+const facebook = {
+  Zuckerberg: {
+    Schroepfer: {
+      Bosworth: {
+        Steve: {},
+        Kyle: {},
+        Andra: {}
+      },
+      Zhao: {
+        Richie: {},
+        Sofia: {},
+        Jen: {}
+      },
+      Badros: {
+        John: {},
+        Mike: {},
+        Pat: {}
+      },
+      Parikh: {
+        Zach: {},
+        Ryan: {},
+        Tes: {}
+      }
+    },
+    Schrage: {
+      VanDyck: {
+        Sabrina: {},
+        Michelle: {},
+        Josh: {}
+      },
+      Swain: {
+        Blanch: {},
+        Tom: {},
+        Joe: {}
+      },
+      Frankovsky: {
+        Jasee: {},
+        Brian: {},
+        Margaret: {}
+      }
+    },
+    Sandberg: {
+      Goler: {
+        Eddie: {},
+        Julie: {},
+        Annie: {}
+      },
+      Hernandez: {
+        Rowi: {},
+        Inga: {},
+        Morgan: {}
+      },
+      Moissinac: {
+        Amy: {},
+        Chuck: {},
+        Vinni: {}
+      },
+      Kelley: {
+        Eric: {},
+        Ana: {},
+        Wes: {}
       }
     }
-  ];
-  
-function organizationChart(org) {
-    //base case
-
+  }
 };
 
-  console.log(organizationChart(facebook));
-
-function binary(num){
-    if(num === 0){
-        return ''
-    }
-    return num%2 + binary(Math.floor(num/2));
+function organizationChart(data, depth = 0) {
+  let indent = ' '.repeat(depth * 4);
+  Object.keys(data).forEach(key => {
+    console.log(indent + key);
+    organizationChart(data[key], depth + 1);
+  });
 }
 
-console.log(binary(5))
+console.log(organizationChart(facebook));
+
+// function binary(num) {
+//   if (num === 0) {
+//     return '';
+//   }
+//   return (num % 2) + binary(Math.floor(num / 2));
+// }
+
+// console.log(binary(5));
